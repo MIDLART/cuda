@@ -16,16 +16,6 @@ do {											                    \
 	}										                        \
 } while(0)
 
-void fill_random_array(double* arr, int n, double min_val, double max_val) {
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_real_distribution<> distrib(min_val, max_val);
-
-    for (int i = 0; i < n; ++i) {
-        arr[i] = distrib(gen);
-    }
-}
-
 struct comparator {
     __host__ __device__ bool operator()(double a, double b) {
         return fabs(a) < fabs(b);
@@ -106,17 +96,13 @@ int main() {
     std::cout.tie(nullptr);
 
     int n;
-//    std::cin >> n;
-
-    n = 100;
+    std::cin >> n;
 
     double* matrix = new double[n * n];
 
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
-//            std::cin >> matrix[j * n + i];
-            matrix[j * n + i] = 0;
-            if (i == j) matrix[j * n + i] = 1;
+            std::cin >> matrix[j * n + i];
         }
     }
 
